@@ -1,0 +1,52 @@
+const UPTIME_ROBOT_API_KEY = 'u773458-XXXXXXXXXXXXXXXXXXXXXX';
+
+const sites = {
+  'Google.com': 789012345,
+  'Netflix.com': 789012346,
+  'ChatGPT.com': 801243306,
+  'Discord.com': 789012348,
+  'GitHub.com': 789012349
+};
+
+async function fetchStatus() {
+  const response = await fetch('https://api.uptimerobot.com/v2/getMonitors', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: `api_key=${UPTIME_ROBOT_API_KEY}&format=json&monitors=${Object.values(sites).join(',')}`
+  });
+
+  const data = await response.json();
+  const grid = document.getElementById('statusGrid');
+  grid.innerHTML = '';
+
+  if (data.monitors) {
+    data.monitors.forEach(monitor => {
+      const name = Object.keys(sites).find(key => sites[key] === monitor.id) || monitor.url;
+      const status = monitor.status === 2 ? 'up' : monitor.status === 0 ? 'unknown' : 'down';
+      const statusText = status.charAt(0).toUpperCase() + status.slice(1);
+
+      const card = document.createElement('div');
+      card.className = 'site-card';
+      card.innerHTML = `
+        <h3>${name}</h3>
+        <span class="status ${status}">${statusText}</span>
+      `;
+      grid.appendChild(card);
+    });
+  } else {
+    grid.innerHTML = '<p>Failed to load status. Check API key or monitor IDs.</p>';
+  }
+}
+
+function checkCustomSite() {
+  const domain = document.getElementById('domainInput').value.trim();
+  if (!domain) {
+    alert('Please enter a website, e.g., netflix.com');
+    return;
+  }
+  alert('Custom checks require a backend. This free version only shows pre-configured sites.');
+}
+
+window.onload = fetchStatus;
