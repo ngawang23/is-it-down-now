@@ -1,11 +1,11 @@
-const UPTIME_ROBOT_API_KEY = 'u773458-XXXXXXXXXXXXXXXXXXXXXX';
+const UPTIME_ROBOT_API_KEY = 'u3086475-a47b108d529a561145182e82';
 
 const sites = {
-  'Google.com': 789012345,
-  'Netflix.com': 789012346,
+  'Google.com': 801243249,
+  'Netflix.com': 801243271,
   'ChatGPT.com': 801243306,
-  'Discord.com': 789012348,
-  'GitHub.com': 789012349
+  'Discord.com': 801257822,
+  'GitHub.com': 801257827
 };
 
 async function fetchStatus() {
@@ -48,5 +48,6 @@ function checkCustomSite() {
   }
   alert('Custom checks require a backend. This free version only shows pre-configured sites.');
 }
+
 
 window.onload = fetchStatus;
