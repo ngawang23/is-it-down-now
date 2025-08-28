@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Is It Down Now?</title>
+  <meta name="description" content="Check if Netflix, ChatGPT, Discord, and other sites are down right now." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Is It Down Now?</h1>
+    <p class="subtitle">Check if popular websites are down for everyone — or just you.</p>
+
+    <div class="search-box">
+      <input type="text" id="domainInput" placeholder="e.g., netflix.com" />
+      <button onclick="checkCustomSite()">Check</button>
+    </div>
+
+    <p class="note">
+      <strong>Note:</strong> This free version shows status for popular sites using 
+      <a href="https://uptimerobot.com" target="_blank">UptimeRobot</a>.
+    </p>
+
+    <h2>Live Status of Popular Sites</h2>
+    <div id="statusGrid" class="grid">
+      <p>Loading status...</p>
+    </div>
+
+    <footer>
+      <p>Made with ❤️ | Powered by <a href="https://uptimerobot.com" target="_blank">UptimeRobot API</a></p>
+      <p><small>100% free to host on GitHub Pages.</small></p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
